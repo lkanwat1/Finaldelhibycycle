@@ -233,7 +233,7 @@ class TourDetails extends Component {
           <div className='d-client-review-slider-item'>
             <div className='single-destination-grid text-center'>
               <div className='thumb'>
-                <img style={{ width: "100%" }} src={singleData.imagejpeg} />
+                <img key={index} style={{ width: "100%" }} src={singleData.imagejpeg} />
               </div>
             </div>
           </div>
@@ -248,7 +248,7 @@ class TourDetails extends Component {
         return (
           <div className='d-client-review-slider-item'>
             <div className='single-destination-grid text-center'>
-              <img src={singleData.imagejpeg} />
+            <img  key={index} style={{ width: "100%" }} src={singleData.imagejpeg} />
             </div>
           </div>
         )

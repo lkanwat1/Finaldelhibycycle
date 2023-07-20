@@ -599,20 +599,20 @@
   .destinations-client-review-slider .slick-prev {
   position: absolute;
   bottom: -55px;
-  top: 18vh;
+  top: 15vh;
   z-index: 2;
   margin-top: 0;
-  left: 20%;
+  left: 7%;
   margin-left: -60px;
   }
   .destinations-client-review-slider .slick-next {
   position: absolute;
   right: auto;
   bottom: -55px;
-  left: 84%;
+  left: 92.5%;
   z-index: 2;
   margin-left: 10px;
-  top: 18vh;
+  top: 15vh;
   margin-top: 0;
   }
   .destinations-details-page .destinations-client-review-slider {

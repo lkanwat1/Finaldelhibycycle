@@ -4635,6 +4635,10 @@ background-image: url("https://delhibycycle.s3.ap-south-1.amazonaws.com/street-f
 .single-destinations-list .thumb {
   position: relative;
   background: var(--main-color-two);
+  width:fit-content;
+  height: fit-content;
+  display: inline-block;
+  background: var(--main-color-two);
   overflow: hidden;
 }
 .single-destinations-list .thumb img {
