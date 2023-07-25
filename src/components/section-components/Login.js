@@ -96,7 +96,7 @@ const Auth = () => {
   useEffect(() => {
     // Check login status on component mount
     const storedToken = localStorage.getItem("token")
-    console.log(storedToken)
+    // console.log(storedToken)
     if (storedToken) {
       // console.log(token)
       setIsLoggedIn(true)
@@ -155,7 +155,7 @@ const Auth = () => {
 
     if (Object.keys(errors).length === 0) {
       axios
-        .post("https://0a38-223-190-85-92.ngrok-free.app/auth/signup", user)
+        .post("https://www.delhibycycle.com/auth/signup", user)
         .then((res) => {
           const message = res.data.message
           // alert('Successfully Registered!'); // Display error or success notification
@@ -202,7 +202,7 @@ const Auth = () => {
 
     if (Object.keys(errors).length === 0) {
       axios
-        .post("https://0a38-223-190-85-92.ngrok-free.app/auth/signin", user1)
+        .post("https://www.delhibycycle.com/auth/signin", user1)
         .then((res) => {
           const message = "Successfully Logged in"
           // this.props.history.push("/user-profile")

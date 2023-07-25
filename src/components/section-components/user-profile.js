@@ -24,7 +24,7 @@ class UserProfile extends Component {
   componentDidMount() {
     // Make the Axios request to get the data
     axios
-      .get(`https://0a38-223-190-85-92.ngrok-free.app/auth/profile`, {
+      .get(`https://www.delhibycycle.com/auth/profile`, {
         headers: {
           Authorization: localStorage.getItem("token"), // Replace with your actual token
         },
@@ -52,7 +52,7 @@ class UserProfile extends Component {
     const { name, bio, country, email, mobileNumber } = this.state;
     axios
       .put(
-        "https://0a38-223-190-85-92.ngrok-free.app/updateUser",
+        "https://www.delhibycycle.com/updateUser",
         {
           name,
           bio,
@@ -120,7 +120,7 @@ class UserProfile extends Component {
 
             axios
               .post(
-                "https://0a38-223-190-85-92.ngrok-free.app/upload",
+                "https://www.delhibycycle.com/upload",
                 {
                   image: "lakshya.jpeg",
                 },
@@ -136,7 +136,7 @@ class UserProfile extends Component {
                   console.log("data from aws", data)
                   axios
                     .post(
-                      "https://0a38-223-190-85-92.ngrok-free.app/updateUser",
+                      "https://www.delhibycycle.com/updateUser",
                       {},
                       {
                         headers: {
@@ -269,7 +269,7 @@ class UserProfile extends Component {
                               <i className='fa fa-picture-o' />
                               Change Photo
                             </label>
-                            <h4 className='name'>Afsar Hossen</h4>
+                              <h4 className='name'>{name}</h4>
                           </div>
                         </div>
                         <form className="tp-form-wrap" onSubmit={(e) => e.preventDefault()}>
@@ -374,7 +374,7 @@ class UserProfile extends Component {
                                 </span>
                                 {isEditMode ? (
                                    <input
-                                   type='text'
+                                   type='number'
                                    placeholder={+880}
                                    name='mobileNumber'
                                    value={mobileNumber}
