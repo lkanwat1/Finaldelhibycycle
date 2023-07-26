@@ -3317,7 +3317,7 @@
   }
   .reslogin{
     position: absolute;
-    height: 8vh;
+    height: 7vh;
     top:1vh;
     left:88vw;
     width: 11%;
@@ -3548,7 +3548,7 @@
  @media only screen and (max-width: 940px) { 
   .reslogin{
     position: absolute;
-    height: 8vh;
+    height: 7vh;
     top:1vh;
     left:74vw;
     width: 10%;
@@ -3558,7 +3558,7 @@
  @media only screen and (max-width: 767px) {
   .reslogin{
     position: absolute;
-    height: 8vh;
+    height: 7vh;
     top:1vh;
     left:66vw;
     width: 14%;
@@ -3826,7 +3826,7 @@
  
   .reslogin{
     position: absolute;
-    height: 8vh;
+    height: 7vh;
     top:1vh;
     left:73vw;
     width: 14%;
@@ -4358,7 +4358,7 @@
 }
 .reslogin{
   position: absolute;
-  height: 8vh;
+  height: 7vh;
   top:1vh;
   left:70vw;
   width: 17%;
