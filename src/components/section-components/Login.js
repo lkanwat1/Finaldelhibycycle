@@ -14,7 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 350,
   bgcolor: "background.paper",
   borderRadius: "2%",
   boxShadow: 30,
@@ -26,11 +26,11 @@ const style1 = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 450,
+  width: 350,
   bgcolor: "background.paper",
   borderRadius: "2%",
   boxShadow: 30,
-  p: 2,
+  p: 0,
 }
 
 const Auth = () => {
@@ -333,7 +333,7 @@ const Auth = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box className="login" sx={style}>
             <div
               style={{
                 display: "flex",

@@ -11,6 +11,7 @@ class Sidebar extends Component {
       height: "25px",
       lineHeight: "25px",
       color: "#ffffff",
+      border:"whitesmoke",
       fontSize: "14px",
       borderRadius: "2px",
       margin: "0 4px",
