@@ -291,14 +291,15 @@ const Auth = () => {
           Something wrong Please try again..
         </MuiAlert>
       </Snackbar>
-
+        
+      
       {isLoggedIn ? (
         // Display logout button if logged in
         <button
-          className='atn btn-yellow'
-          onClick={logout}
-          style={{
-            width: "7vw",
+        className='atn btn-yellow reslogin'
+        onClick={logout}
+        style={{
+          
             backgroundColor: "whitesmoke",
             color: "black",
             cursor: "pointer",
@@ -309,13 +310,15 @@ const Auth = () => {
       ) : (
         // Display login button if not logged in
         <button
-          className='atn btn-yellow'
-          onClick={handleOpen}
-          style={{ width: "7vw", cursor: "pointer" }}
+        
+        className='atn btn-yellow reslogin'
+        onClick={handleOpen}
+        style={{ cursor: "pointer" }}
         >
           Login
         </button>
       )}
+     
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'

@@ -3194,6 +3194,7 @@
  
  /* Tablet Layout: 991px. */
  @media only screen and (max-width: 991px) {
+ 
   .banner-slider-two .banner-inner .banner-title {
   font-size: 28px;
   }
@@ -3314,7 +3315,13 @@
   .client-review-area-home.pd-top-70 {
   padding-top: 83px;
   }
- 
+  .reslogin{
+    position: absolute;
+    height: 8vh;
+    top:1vh;
+    left:88vw;
+    width: 11%;
+  }
   /******** home 2 responsive ********/
   .video-banner-area .video-banner-content-wrap .video-banner-content h2 {
   font-size: 36px;
@@ -3536,9 +3543,26 @@
   line-height: 28px;
   }
  }
- 
+
+ /* medium tablet layout 900px */
+ @media only screen and (max-width: 940px) { 
+  .reslogin{
+    position: absolute;
+    height: 8vh;
+    top:1vh;
+    left:74vw;
+    width: 10%;
+  }
+ }
  /* medium tablet layout 767px */
  @media only screen and (max-width: 767px) {
+  .reslogin{
+    position: absolute;
+    height: 8vh;
+    top:1vh;
+    left:66vw;
+    width: 14%;
+  }
   .search-popup .search-form {
   min-width: 85%;
   }
@@ -3799,6 +3823,16 @@
  }
  
  @media only screen and (max-width: 575px) {
+ 
+  .reslogin{
+    position: absolute;
+    height: 8vh;
+    top:1vh;
+    left:73vw;
+    width: 14%;
+  }
+ 
+ 
   .section-title {
   margin-bottom: 33px;
   }
@@ -4321,6 +4355,13 @@
     position: absolute;
     top: 26vh;
     left: 17%;
+}
+.reslogin{
+  position: absolute;
+  height: 8vh;
+  top:1vh;
+  left:70vw;
+  width: 17%;
 }
 .destinations-client-review-slider .slick-next {
     position: absolute;
