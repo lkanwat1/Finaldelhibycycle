@@ -526,7 +526,7 @@ class TourDetails extends Component {
             <div className='col-lg-4'>
               <div className='sidebar-area sidebar-area-4'>
                 <div className='widget tour-list-widget'>
-                  <h2 className='widget-title'>Book Tour</h2>
+                  <h2 className='widget-title' id="bookTourForm" >Book Tour</h2>
 
                   <div className='widget-tour-list-meta'>
                     <div className='single-widget-search-input-title'>

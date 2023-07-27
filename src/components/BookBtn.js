@@ -1,6 +1,13 @@
 import React from 'react'
 
 const BookBtn = () => {
+  const handleBookNowClick = () => {
+    // Scroll to the book tour form element
+    const bookTourFormElement = document.getElementById("bookTourForm");
+    if (bookTourFormElement) {
+      bookTourFormElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <>
       <div class="fixed-bottom" style={{zIndex: "10", width: "100%", backgroundColor: "#fff", padding: "0"}}>
@@ -16,7 +23,9 @@ const BookBtn = () => {
             </button>
           </div>
           <div class="bookDiv" style={{width: "66.6666%" }}>
-            <button type="button" class="btn btn-primary active bookBtn" data-bs-toggle="button" 
+            <button type="button" class="btn btn-primary active bookBtn"
+              onClick={handleBookNowClick}
+              data-bs-toggle="button" 
             style={{width: "100%",
             backgroundColor:"#fd7e14",
                  height: "9.4vh",

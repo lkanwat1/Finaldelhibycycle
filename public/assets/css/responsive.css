@@ -4351,6 +4351,9 @@
   }
  }
  @media only screen and (max-width: 450px) {
+  .single-destinations-list.style-two {
+  text-align: center; 
+  }
   .destinations-client-review-slider .slick-prev {
     position: absolute;
     top: 26vh;
