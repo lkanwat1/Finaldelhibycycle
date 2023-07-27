@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ImageLazyLoad from "../section-components/ImageLazyLoad";
 import { Link } from "react-router-dom";
-import parse from "html-react-parser";
 
 class TourListV3 extends Component {
   constructor(props) {
@@ -9,21 +8,27 @@ class TourListV3 extends Component {
     this.state = {
       query: "",
       locationFilter: "",
-      priceFilter: null,
+      priceFilter: 0,
+      updatedContent: null,
     };
   }
 
+  componentDidMount() {
+    const updatedContent = this.renderFilteredData();
+    this.setState({ updatedContent });
+  }
+
   handleSearch = (e) => {
-    this.setState({ query: e.target.value });
+    this.setState({ query: e.target.value, updatedContent: null });
   };
 
   handleLocationFilter = (e) => {
-    this.setState({ locationFilter: e.target.value });
+    this.setState({ locationFilter: e.target.value, updatedContent: null });
   };
 
   handlePriceFilter = (e) => {
-    const priceFilter = e.target.value;
-    this.setState({ priceFilter });
+    const priceFilter = parseInt(e.target.value);
+    this.setState({ priceFilter, updatedContent: null });
   };
 
   renderFilteredData() {
@@ -40,14 +45,14 @@ class TourListV3 extends Component {
       );
     });
 
-    if (parseInt(priceFilter) === 0) {
+    if (priceFilter === 0) {
       filteredData.sort((a, b) => {
         return (
           parseInt(a.price.replace(",", "")) -
           parseInt(b.price.replace(",", ""))
         );
       });
-    } else if (parseInt(priceFilter) === 1) {
+    } else if (priceFilter === 1) {
       filteredData.sort((a, b) => {
         return (
           parseInt(b.price.replace(",", "")) -
@@ -106,7 +111,7 @@ class TourListV3 extends Component {
   }
 
   render() {
-    const { query, locationFilter, priceFilter } = this.state;
+    const { query, locationFilter, priceFilter, updatedContent } = this.state;
 
     return (
       <div className="tour-list-area pd-top-120 viaje-go-top">
@@ -114,7 +119,7 @@ class TourListV3 extends Component {
           <div className="row">
             <div className="col-xl-9 col-lg-8 order-lg-12">
               <div className="row justify-content-center">
-                {this.renderFilteredData()}
+                {updatedContent ? updatedContent : this.renderFilteredData()}
               </div>
             </div>
             <div className="col-xl-3 col-lg-4 order-lg-1">
