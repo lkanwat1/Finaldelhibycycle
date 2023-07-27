@@ -7413,7 +7413,7 @@ tour details style
   color: #cfd3de;
 }
 /* .single-widget-search-input */
-.nice-select {
+/* .nice-select {
   border: 1px solid #eaeaea;
   color: #cfd3de;
   width: 100%;
@@ -7422,7 +7422,7 @@ tour details style
   background-position: 20px;
   font-size: 16px;
   margin-bottom: 22px;
-}
+} */
 .single-widget-search-input .nice-select:focus,
 .single-widget-search-input .nice-select:active {
   -webkit-box-shadow: none;
