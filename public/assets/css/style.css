@@ -7412,7 +7412,8 @@ tour details style
 .single-widget-search-input textarea::placeholder {
   color: #cfd3de;
 }
-.single-widget-search-input .nice-select {
+/* .single-widget-search-input */
+.nice-select {
   border: 1px solid #eaeaea;
   color: #cfd3de;
   width: 100%;
