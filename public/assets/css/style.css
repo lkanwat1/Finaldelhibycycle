@@ -7316,11 +7316,15 @@ tour details style
 .tour-list-widget {
   padding: 40px 30px 26px 30px !important;
 }
-
+.filter{
+  color: var(--main-color-two);
+  font-weight: 400;
+  margin-bottom: 15px;
+}
 .single-widget-search-input-title {
   color: var(--main-color-two);
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom: 15px;
 }
 
 .widget-tour-list-search .search-form {
