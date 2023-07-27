@@ -171,7 +171,7 @@ class TourListV3 extends Component {
                     <div className='single-widget-search-input-title'>
                       <i className='fa fa-plus-circle' /> Location
                     </div>
-                    <div className='single-widget-search-input'>
+                    <div className="single-widget-search-input-title" >
                       <select
                         className='select w-100 custom-select'
                         value={locationFilter}
@@ -186,10 +186,10 @@ class TourListV3 extends Component {
                       </select>
                     </div>
 
-                    <div className='single-widget-search-input-title'>
+                    <div className="single-widget-search-input-title">
                       <i className='fa fa-plus-circle' /> Travel Type
                     </div>
-                    <div className='single-widget-search-input'>
+                    <div >
                       <select className='select w-100 custom-select'>
                         <option value={1}>Day Cycle Tour</option>
                         <option value={2}>Walking Tour</option>
@@ -197,10 +197,10 @@ class TourListV3 extends Component {
                       </select>
                     </div>
 
-                    <div className='single-widget-search-input-title'>
+                    <div className="single-widget-search-input-title">
                       <i className='fa fa-usd' /> Price Filter
                     </div>
-                    <div className='single-widget-search-input'>
+                    <div className="single-widget-search-input-title">
                       <select
                         className='select w-100 custom-select'
                         value={priceFilter}
