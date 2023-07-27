@@ -197,7 +197,7 @@ class TourListV3 extends Component {
                       </select>
                     </div>
 
-                    <div className='single-widget-search-input'>
+                    {/* <div className='single-widget-search-input'> */}
                     <div className='single-widget-search-input-title'>
                       <i className='fa fa-usd' /> Price Filter
                     </div>
@@ -221,7 +221,7 @@ class TourListV3 extends Component {
                         <label htmlFor="amount">Price: </label>
                         <input type="text" id="amount" readOnly />
                       </div> */}
-                    </div>
+                    {/* </div> */}
                   </div>
                 </div>
               </div>
