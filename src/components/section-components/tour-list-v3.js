@@ -9,29 +9,26 @@ class TourListV3 extends Component {
       query: "",
       locationFilter: "",
       priceFilter: 0,
-      updatedContent: null,
+      filteredData: null,
     };
   }
 
   componentDidMount() {
-    const updatedContent = this.renderFilteredData();
-    this.setState({ updatedContent });
+    this.updateFilteredData();
   }
 
-  handleSearch = (e) => {
-    this.setState({ query: e.target.value, updatedContent: null });
-  };
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.data !== this.props.data ||
+      prevState.query !== this.state.query ||
+      prevState.locationFilter !== this.state.locationFilter ||
+      prevState.priceFilter !== this.state.priceFilter
+    ) {
+      this.updateFilteredData();
+    }
+  }
 
-  handleLocationFilter = (e) => {
-    this.setState({ locationFilter: e.target.value, updatedContent: null });
-  };
-
-  handlePriceFilter = (e) => {
-    const priceFilter = parseInt(e.target.value);
-    this.setState({ priceFilter, updatedContent: null });
-  };
-
-  renderFilteredData() {
+  updateFilteredData() {
     const { query, locationFilter, priceFilter } = this.state;
     const filteredData = this.props.data.filter((singleContent) => {
       const lowercaseQuery = query.toLowerCase();
@@ -61,6 +58,109 @@ class TourListV3 extends Component {
       });
     }
 
+    this.setState({ filteredData });
+  }
+
+  handleSearch = (e) => {
+    this.setState({ query: e.target.value });
+  };
+
+  handleLocationFilter = (e) => {
+    this.setState({ locationFilter: e.target.value });
+  };
+
+  handlePriceFilter = (e) => {
+    const priceFilter = parseInt(e.target.value);
+    this.setState({ priceFilter });
+  };
+
+  render() {
+    const { query, locationFilter, priceFilter, filteredData } = this.state;
+
+    return (
+      <div className="tour-list-area pd-top-120 viaje-go-top">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-9 col-lg-8 order-lg-12">
+              <div className="row justify-content-center">
+                {filteredData ? this.renderFilteredData(filteredData) : null}
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-4 order-lg-1">
+              <div className="sidebar-area sidebar-area-inner-page">
+                <div className="widget tour-list-widget">
+                  <div className="widget-tour-list-search">
+                    <form className="search-form">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          value={query}
+                          onChange={this.handleSearch}
+                          placeholder="Search"
+                        />
+                      </div>
+                      <button className="submit-btn" type="submit">
+                        <i className="ti-search" />
+                      </button>
+                    </form>
+                  </div>
+                  <div className="widget-tour-list-meta">
+                    <div className="filter">
+                      <i className="fa fa-plus-circle" /> Location
+                    </div>
+                    <div className="filter">
+  <select
+                      className="selector w-100"
+    value={locationFilter}
+    onChange={this.handleLocationFilter}
+  >
+    <option value={""}>All Tours</option>
+    <option value={"Old Delhi"}>Old Delhi</option>
+    <option value={"New Delhi"}>New Delhi</option>
+    <option value={"Agra"}>Agra</option>
+    <option value={"Rajasthan"}>Rajasthan</option>
+    <option value={"Goa"}>Goa</option>
+  </select>
+</div>
+
+<div className="filter">
+  <i className="fa fa-plus-circle" /> Travel Type
+</div>
+<div className="filter">
+  <select
+                        className="selector w-100"
+                      >
+    <option value={1}>Day Cycle Tour</option>
+    <option value={2}>Walking Tour</option>
+    <option value={3}>Cycling Holidays</option>
+  </select>
+</div>
+
+<div className="filter">
+  <i className="fa fa-usd" /> Price Filter
+</div>
+<div className="filter">
+                      <select
+                        className="selector w-100"
+    value={priceFilter}
+    onChange={this.handlePriceFilter}
+  >
+    <option value={0}>Low - High</option>
+    <option value={1}>High - Low</option>
+  </select>
+</div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderFilteredData(filteredData) {
     return filteredData.map((singleContent) => {
       const {
         imagewebp,
@@ -108,89 +208,6 @@ class TourListV3 extends Component {
         </div>
       );
     });
-  }
-
-  render() {
-    const { query, locationFilter, priceFilter, updatedContent } = this.state;
-
-    return (
-      <div className="tour-list-area pd-top-120 viaje-go-top">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-9 col-lg-8 order-lg-12">
-              <div className="row justify-content-center">
-                {updatedContent ? updatedContent : this.renderFilteredData()}
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-4 order-lg-1">
-              <div className="sidebar-area sidebar-area-inner-page">
-                <div className="widget tour-list-widget">
-                  <div className="widget-tour-list-search">
-                    <form className="search-form">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          value={query}
-                          onChange={this.handleSearch}
-                          placeholder="Search"
-                        />
-                      </div>
-                      <button className="submit-btn" type="submit">
-                        <i className="ti-search" />
-                      </button>
-                    </form>
-                  </div>
-                  <div className="widget-tour-list-meta">
-                    <div className="filter">
-                      <i className="fa fa-plus-circle" /> Location
-                    </div>
-                    <div className="filter">
-                      <select
-                        className="select w-100 custom-select"
-                        value={locationFilter}
-                        onChange={this.handleLocationFilter}
-                      >
-                        <option value={""}>All Tours</option>
-                        <option value={"Old Delhi"}>Old Delhi</option>
-                        <option value={"New Delhi"}>New Delhi</option>
-                        <option value={"Agra"}>Agra</option>
-                        <option value={"Rajashthan"}>Rajasthan</option>
-                        <option value={"Goa"}>Goa</option>
-                      </select>
-                    </div>
-
-                    <div className="filter">
-                      <i className="fa fa-plus-circle" /> Travel Type
-                    </div>
-                    <div className="filter">
-                      <select className="select w-100 custom-select">
-                        <option value={1}>Day Cycle Tour</option>
-                        <option value={2}>Walking Tour</option>
-                        <option value={3}>Cycling Holidays</option>
-                      </select>
-                    </div>
-
-                    <div className="filter">
-                      <i className="fa fa-usd" /> Price Filter
-                    </div>
-                    <div className="filter">
-                      <select
-                        className="select w-100 custom-select"
-                        value={priceFilter}
-                        onChange={this.handlePriceFilter}
-                      >
-                        <option value={0}>Low - High</option>
-                        <option value={1}>High - Low</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
   }
 }
 
