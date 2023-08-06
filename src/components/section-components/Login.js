@@ -622,12 +622,14 @@ const Auth = () => {
            <select
         style={{
           display: "block",
-          marginTop: "1vh",
-          marginBottom: "2.9vh",
-          padding: "15px",
-          width: "300px",
-          backgroundColor: "whitesmoke",
-          border: "none",
+    marginTop: "1vh",
+    marginBottom: "2.9vh",
+    padding: "15px",
+    width: "300px",
+    backgroundColor: "whitesmoke",
+    border: "none",
+    maxHeight: "200px",   // Add max-height property for scrollability
+    overflow: "auto",     // Add overflow property for scrolling
         }}
         name='country'
         defaultValue={user.country}
