@@ -40,7 +40,7 @@ const Auth = () => {
     email: "",
     password: "",
   })
-
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -48,6 +48,23 @@ const Auth = () => {
     country: "",
     mobileNumber: "",
   })
+  const countries = [
+    { code: 'US', name: 'United States', dialCode: '+1' },
+    { code: 'CA', name: 'Canada', dialCode: '+1' },
+    { code: 'GB', name: 'United Kingdom', dialCode: '+44' },
+    { code: 'IN', name: 'India', dialCode: '+91' },
+    // Add more countries as needed
+    { code: 'AU', name: 'Australia', dialCode: '+61' },
+    { code: 'DE', name: 'Germany', dialCode: '+49' },
+    { code: 'FR', name: 'France', dialCode: '+33' },
+    { code: 'JP', name: 'Japan', dialCode: '+81' },
+    { code: 'CN', name: 'China', dialCode: '+86' },
+    { code: 'BR', name: 'Brazil', dialCode: '+55' },
+    { code: 'MX', name: 'Mexico', dialCode: '+52' },
+    { code: 'RU', name: 'Russia', dialCode: '+7' },
+    { code: 'SA', name: 'Saudi Arabia', dialCode: '+966' },
+    // Add more countries as needed
+];
 
   const [loginErrors, setLoginErrors] = useState({})
   const [registerErrors, setRegisterErrors] = useState({})
@@ -72,6 +89,10 @@ const Auth = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
+    if (name === "country") {
+      const selectedCountry = countries.find((country) => country.code === value);
+      setSelectedCountry(selectedCountry);
+    }
     setUser({
       ...user,
       [name]: value,
@@ -598,62 +619,68 @@ const Auth = () => {
                     {registerErrors.email}
                   </p>
                 )}
-                <input
-                  style={{
-                    display: "block",
-                    marginTop: "1vh",
-                    marginBottom: "2.9vh",
-                    padding: "15px",
-                    width: "300px",
-                    backgroundColor: "whitesmoke",
-                    border: "none",
-                  }}
-                  name='country'
-                  type='text'
-                  placeholder='Country'
-                  defaultValue={user.country}
-                  onChange={handleChange}
-                  required
-                />
-                {registerErrors.country && (
-                  <p
-                    style={{
-                      color: "red",
-                      marginTop: "-30px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {registerErrors.country}
-                  </p>
-                )}
-                <input
-                  style={{
-                    display: "block",
-                    marginTop: "1vh",
-                    marginBottom: "2.9vh",
-                    padding: "15px",
-                    width: "300px",
-                    backgroundColor: "whitesmoke",
-                    border: "none",
-                  }}
-                  name='mobileNumber'
-                  type='text'
-                  placeholder='Mobile Number'
-                  defaultValue={user.mobileNumber}
-                  onChange={handleChange}
-                  required
-                />
-                {registerErrors.mobileNumber && (
-                  <p
-                    style={{
-                      color: "red",
-                      marginTop: "-30px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {registerErrors.mobileNumber}
-                  </p>
-                )}
+           <select
+        style={{
+          display: "block",
+          marginTop: "1vh",
+          marginBottom: "2.9vh",
+          padding: "15px",
+          width: "300px",
+          backgroundColor: "whitesmoke",
+          border: "none",
+        }}
+        name='country'
+        defaultValue={user.country}
+        onChange={handleChange}
+        required
+      >
+        <option value=''>Select a country</option>
+        {countries.map((country) => (
+          <option key={country.code} value={country.code}>
+            {country.name}
+          </option>
+        ))}
+      </select>
+      {registerErrors.country && (
+        <p
+          style={{
+            color: "red",
+            marginTop: "-30px",
+            marginBottom: "20px",
+          }}
+        >
+          {registerErrors.country}
+        </p>
+      )}
+
+      <input
+        style={{
+          display: "block",
+          marginTop: "1vh",
+          marginBottom: "2.9vh",
+          padding: "15px",
+          width: "300px",
+          backgroundColor: "whitesmoke",
+          border: "none",
+        }}
+        name='mobileNumber'
+        type='text'
+        placeholder='Mobile Number'
+        value={user.mobileNumber ? `${selectedCountry.dialCode} ${user.mobileNumber}` : ""}
+        onChange={handleChange}
+        required
+      />
+      {registerErrors.mobileNumber && (
+        <p
+          style={{
+            color: "red",
+            marginTop: "-30px",
+            marginBottom: "20px",
+          }}
+        >
+          {registerErrors.mobileNumber}
+        </p>
+      )}
               </div>
               <button
                 className='btn btn-yellow'
