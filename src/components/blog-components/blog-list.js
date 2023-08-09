@@ -13,8 +13,8 @@ class BlogList extends Component {
     this.handleClickTags = this.handleClickTags.bind(this)
   }
 
-  handleClickTags = (e) => {
-    this.setState({ tagClick: e })
+  handleClickTags = (tag) => {
+    this.setState({ tagClick: tag })
   }
 
   renderContent() {

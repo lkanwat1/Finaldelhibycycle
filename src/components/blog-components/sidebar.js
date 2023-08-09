@@ -4,7 +4,7 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 
 class Sidebar extends Component {
-  render() {
+    render() {
     const styles = {
       background: "#9499a6",
       padding: "0 6px 0 7px",
@@ -18,10 +18,21 @@ class Sidebar extends Component {
       transition: "all 0.5s ease",
       display: "inline",
     }
-
+    const tags = [
+      { tag: 'India', label: 'India' },
+      { tag: 'Cycle', label: 'Cycle Tours' },
+      { tag: 'Bike', label: 'Bike Tour' },
+      { tag: 'Cycling', label: 'Cycling Holidays' },
+      { tag: 'Delhi By Cycle', label: 'Delhi By Cycle' },
+      { tag: 'Tour', label: 'Tours' },
+      { tag: 'Reviews', label: 'Reviews' },
+      { tag: 'Nature', label: 'Nature' },
+      { tag: 'Culture', label: 'Culture' },
+      { tag: 'Spiritual', label: 'Spiritual' },
+    ];
     // Usage:
     ;<span style={styles}>Text</span>
-
+   
     let anchor = "#"
     let imagealt = "image"
     let publicUrl = process.env.PUBLIC_URL + "/"
@@ -105,67 +116,14 @@ class Sidebar extends Component {
           <div className='widget widget_tag_cloud'>
             <h2 className='widget-title'>Tags</h2>
             <div className='tagcloud'>
-              <button
-                onClick={() => this.props.handleClickTags("India")}
-                style={styles}
-              >
-                India
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Cycle")}
-                style={styles}
-              >
-                Cycle Tours
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Bike")}
-                style={styles}
-              >
-                Bike Tour
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Cycling ")}
-                style={styles}
-              >
-                Cycling Holidays
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Delhi By Cycle")}
-                style={styles}
-              >
-                Delhi By Cycle
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Tour")}
-                style={styles}
-              >
-                Tours
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Reviews")}
-                style={styles}
-              >
-                Reviews
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Nature")}
-                style={styles}
-              >
-                Nature
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Culture")}
-                style={styles}
-              >
-                Culture
-              </button>
-              <button
-                onClick={() => this.props.handleClickTags("Spiritual")}
-                style={styles}
-              >
-                Spiritual
-              </button>
-            </div>
+        {tags.map(({ tag, label }) => (
+          <button key={tag} onClick={() => this.props.handleClickTags(tag)} style={styles}>
+            <Link to="/blogs" style={styles}>
+              {label}
+            </Link>
+          </button>
+        ))}
+      </div>
           </div>
           {/* <div className="widget_ads">
             <Link to="/tour-details">

@@ -1586,6 +1586,10 @@
  }
  
  @media only screen and (max-width: 575px) {
+  .filter-above {
+    order: 1; /* This places the element above other elements */
+  }
+  
   .section-title {
   margin-bottom: 33px;
   }
@@ -2212,9 +2216,9 @@
   .container-bg {
   margin: 0px 40px;
   }
-  .btn-rotate {
+  /* .btn-rotate {
   transform: rotate(270deg);
-  }
+  } */
  }
  @media only screen and (min-width: 1800px) {
   .container {
@@ -3250,7 +3254,7 @@
   margin-bottom: 35px;
   }
   .tp-main-search {
-  padding: 30px 15px 10px 15px;
+  padding: 30px 15px 10px 15px;.sidebar-area
   }
   .single-intro .intro-title .intro-count {
   font-size: 40px;
@@ -3511,6 +3515,7 @@
   }
   .sidebar-area .widget {
   margin-bottom: 50px;
+  margin-top:-181px;
   }
   .breadcrumb-area.style-three .breadcrumb-inner {
   padding: 30px 30px 20px 30px;
@@ -4326,6 +4331,7 @@
   margin-top: 75px;
   }
   .sidebar-area .widget {
+    margin-top: -113px;
   margin-bottom: 30px;
   }
   .newslatter-area-blog.pd-top-108 {
@@ -4508,9 +4514,9 @@
   .container-bg {
   margin: 0px 40px;
   }
-  .btn-rotate {
+  /* .btn-rotate {
   transform: rotate(270deg);
-  }
+  } */
  }
  @media only screen and (min-width: 1800px) {
   .container {

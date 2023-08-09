@@ -4,6 +4,24 @@ import ImageLazyLoad from "../section-components/ImageLazyLoad";
 import Comments from "./comments";
 import Sidebar from "./sidebar";
 class BlogDetails extends Component {
+	state = {
+		clickedTags: [],
+	  };
+	
+	  // Function to handle click on tags
+	  handleClickTags = (tags) => {
+		// Add or remove the clicked tag based on its existence in the state
+		if (this.state.clickedTags.includes(tags)) {
+		  this.setState((prevState) => ({
+			clickedTags: prevState.clickedTags.filter((tag) => tag !== tags),
+		  }));
+		} else {
+		  this.setState((prevState) => ({
+			clickedTags: [...prevState.clickedTags, tags],
+		  }));
+		}
+	  };
+	
 	renderPhotos(imageArray) {
 		return imageArray.map((singleArray, index) => {
 			if (index != 0) {
@@ -379,7 +397,7 @@ class BlogDetails extends Component {
 							</div>
 							{/* blog-comment-area start */}
 						</div>
-						<Sidebar />
+						<Sidebar handleClickTags={this.handleClickTags}/>
 					</div>
 				</div>
 			</div>

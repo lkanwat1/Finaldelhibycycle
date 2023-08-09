@@ -81,12 +81,12 @@ class TourListV3 extends Component {
       <div className="tour-list-area pd-top-120 viaje-go-top">
         <div className="container">
           <div className="row">
-            <div className="col-xl-9 col-lg-8 order-lg-12">
+            <div className=" col-lg-8 col-sm-12 filter-above order-lg-2 order-sm-2">
               <div className="row justify-content-center">
                 {filteredData ? this.renderFilteredData(filteredData) : null}
               </div>
             </div>
-            <div className="col-xl-3 col-lg-4 order-lg-1">
+            <div className=" col-lg-4 col-sm-12 order-lg-1 order-sm-1">
               <div className="sidebar-area sidebar-area-inner-page">
                 <div className="widget tour-list-widget">
                   <div className="widget-tour-list-search">
