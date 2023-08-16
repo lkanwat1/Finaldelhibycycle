@@ -47,7 +47,9 @@ const Auth = () => {
     password: "",
     country: "",
     mobileNumber: "",
+    dialCode: ""
   })
+  
   const countries = [
     { code: 'US', name: 'United States', dialCode: '+1' },
     { code: 'CA', name: 'Canada', dialCode: '+1' },
@@ -88,16 +90,25 @@ const Auth = () => {
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
+  
     if (name === "country") {
-      const selectedCountry = countries.find((country) => country.code === value);
-      setSelectedCountry(selectedCountry);
+      const newSelectedCountry = countries.find((country) => country.name === value);
+      setSelectedCountry(newSelectedCountry);
+      
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value,
+        dialCode: newSelectedCountry ? newSelectedCountry.dialCode : "",
+      }));
+    } else {
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value,
+      }));
     }
-    setUser({
-      ...user,
-      [name]: value,
-    })
-  }
+  };
+
 
   const handleOpen = () => {
     setOpen(true)
@@ -141,7 +152,7 @@ const Auth = () => {
 
   const register = (e) => {
     e.preventDefault()
-    const { name, email, password, country, mobileNumber, confirmPassword } =
+    const { name, email, password, country, dialCode, mobileNumber, confirmPassword } =
       user
     const errors = {}
 
@@ -638,7 +649,7 @@ const Auth = () => {
       >
         <option value=''>Select a country</option>
         {countries.map((country) => (
-          <option key={country.code} value={country.code}>
+          <option key={country.code} value={country.name}>
             {country.name}
           </option>
         ))}
@@ -655,23 +666,50 @@ const Auth = () => {
         </p>
       )}
 
-      <input
-        style={{
-          display: "block",
-          marginTop: "1vh",
-          marginBottom: "2.9vh",
-          padding: "15px",
-          width: "300px",
-          backgroundColor: "whitesmoke",
-          border: "none",
-        }}
-        name='mobileNumber'
-        type='text'
-        placeholder='Mobile Number'
-        value={user.mobileNumber ? `${selectedCountry.dialCode} ${user.mobileNumber}` : ""}
-        onChange={handleChange}
-        required
-      />
+
+    
+<div style={{ display: 'flex', alignItems: 'center' }}>
+                  <input
+                    style={{
+                      marginTop: "1vh",
+                      marginBottom: "2.9vh",
+                      padding: "15px",
+                      
+                      paddingRight: "1px",
+                      backgroundColor: "whitesmoke",
+                      color: "black",
+                      border: "none",
+                      width: "55px",
+                      
+                      borderTopLeftRadius: '4px',
+                      borderBottomLeftRadius: '4px',
+                    }}
+                    name='dialCode'
+                    value={selectedCountry.dialCode || "+123"}
+                    readOnly
+    />
+        <input
+            style={{
+                display: "block",
+                marginTop: "1vh",
+                marginBottom: "2.9vh",
+                      padding: "15px",
+                      paddingRight:"22px",
+                      paddingLeft: "0",
+                marginRight:"11px",
+                width: "100%",
+                backgroundColor: "whitesmoke",
+                border: "none",
+                // marginLeft: '-1vw', // Adjust this value to create space between dial code and input
+            }}
+            name='mobileNumber'
+            type='text'
+            placeholder='Mobile Number'
+            value={user.mobileNumber}
+            onChange={handleChange}
+            required
+        />
+    </div>
       {registerErrors.mobileNumber && (
         <p
           style={{
