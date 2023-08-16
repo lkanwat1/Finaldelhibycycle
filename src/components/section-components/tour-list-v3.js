@@ -10,6 +10,7 @@ class TourListV3 extends Component {
       locationFilter: "",
       priceFilter: 0,
       filteredData: null,
+      travelType: ""
     };
   }
 
@@ -22,23 +23,27 @@ class TourListV3 extends Component {
       prevProps.data !== this.props.data ||
       prevState.query !== this.state.query ||
       prevState.locationFilter !== this.state.locationFilter ||
-      prevState.priceFilter !== this.state.priceFilter
+      prevState.priceFilter !== this.state.priceFilter ||
+      prevState.travelType !== this.state.travelType
     ) {
       this.updateFilteredData();
     }
   }
 
   updateFilteredData() {
-    const { query, locationFilter, priceFilter } = this.state;
+    const { query, locationFilter, priceFilter, travelType } = this.state;
     const filteredData = this.props.data.filter((singleContent) => {
       const lowercaseQuery = query.toLowerCase();
       const lowercaseLocation = singleContent.location.toLowerCase();
-
+      const lowercaseTravelType = singleContent.travelType.toLowerCase();
+     
       return (
         (singleContent.name.toLowerCase().includes(lowercaseQuery) ||
           lowercaseQuery === "") &&
         (locationFilter === "" ||
-          lowercaseLocation.includes(locationFilter.toLowerCase()))
+          lowercaseLocation.includes(locationFilter.toLowerCase())) &&
+          (travelType === "" ||
+          lowercaseTravelType.includes(travelType.toLowerCase()))
       );
     });
 
@@ -69,14 +74,18 @@ class TourListV3 extends Component {
     this.setState({ locationFilter: e.target.value });
   };
 
+  handleTravelTypeFilter = (e) =>{
+    this.setState({travelType: e.target.value});
+  }
+
   handlePriceFilter = (e) => {
     const priceFilter = parseInt(e.target.value);
     this.setState({ priceFilter });
   };
 
   render() {
-    const { query, locationFilter, priceFilter, filteredData } = this.state;
-
+    const { query, locationFilter, priceFilter, filteredData, travelType } = this.state;
+    console.log(this.state.travelType);
     return (
       <div className="tour-list-area pd-top-120 viaje-go-top">
         <div className="container">
@@ -119,7 +128,6 @@ class TourListV3 extends Component {
     <option value={"New Delhi"}>New Delhi</option>
     <option value={"Agra"}>Agra</option>
     <option value={"Rajasthan"}>Rajasthan</option>
-    <option value={"Goa"}>Goa</option>
   </select>
 </div>
 
@@ -129,10 +137,13 @@ class TourListV3 extends Component {
 <div className="filter">
   <select
                         className="selector w-100"
-                      >
-    <option value={1}>Day Cycle Tour</option>
-    <option value={2}>Walking Tour</option>
-    <option value={3}>Cycling Holidays</option>
+                        value={travelType}
+                        onChange={this.handleTravelTypeFilter}
+                    >
+    <option value="">All Tours</option>
+    <option value="Day Cycle Tour">Day Cycle Tour</option>
+    <option value="Walking Tour">Walking Tour</option>
+    <option value="Cycling Holidays">Cycling Holidays</option>
   </select>
 </div>
 

@@ -22,10 +22,9 @@ class Offer extends Component {
       return (
         <div className="d-list-slider-item" style={{width:'fit-content'}}>
           <div className="single-destinations-list text-center" >
-            <div className="thumb">
+            <div className="thumb" style={{width: '100%', display: 'block' }}>
               {offerPrice && <span className="d-list-tag">Special Offer</span>}
-              {/* <ImageLazyLoad imagewebp={imagewebp} imagejpeg={imagejpeg} style={{width:'auto' }}/> */}
-<img src={imagejpeg} datasrc={imagewebp}  alt="tour-image" style={{width:'100%'}}/>
+              <img src={imagejpeg} datasrc={imagewebp}  alt="tour-image" style={{width: '100%'}}/> 
               <div className="d-list-btn-wrap">
                 <div className="d-list-btn viaje-go-top">
                   <Link className="btn btn-yellow" to={link}>
