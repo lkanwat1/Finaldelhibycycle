@@ -10,7 +10,7 @@ class TourListV3 extends Component {
       locationFilter: "",
       priceFilter: 0,
       filteredData: null,
-      travelType: ""
+      travelType: "",
     };
   }
 
@@ -36,13 +36,13 @@ class TourListV3 extends Component {
       const lowercaseQuery = query.toLowerCase();
       const lowercaseLocation = singleContent.location.toLowerCase();
       const lowercaseTravelType = singleContent.travelType.toLowerCase();
-     
+
       return (
         (singleContent.name.toLowerCase().includes(lowercaseQuery) ||
           lowercaseQuery === "") &&
         (locationFilter === "" ||
           lowercaseLocation.includes(locationFilter.toLowerCase())) &&
-          (travelType === "" ||
+        (travelType === "" ||
           lowercaseTravelType.includes(travelType.toLowerCase()))
       );
     });
@@ -66,6 +66,21 @@ class TourListV3 extends Component {
     this.setState({ filteredData });
   }
 
+  renderTravelTypeFilter() {
+    return (
+      <select
+        className="selector w-100"
+        value={this.state.travelType}
+        onChange={this.handleTravelTypeFilter}
+      >
+        <option value="">All Tours</option>
+        <option value="Day Cycle Tour">Day Cycle Tour</option>
+        <option value="Walking Tour">Walking Tour</option>
+        <option value="Cycling Holidays">Cycling Holidays</option>
+      </select>
+    );
+  }
+
   handleSearch = (e) => {
     this.setState({ query: e.target.value });
   };
@@ -74,9 +89,9 @@ class TourListV3 extends Component {
     this.setState({ locationFilter: e.target.value });
   };
 
-  handleTravelTypeFilter = (e) =>{
-    this.setState({travelType: e.target.value});
-  }
+  handleTravelTypeFilter = (e) => {
+    this.setState({ travelType: e.target.value });
+  };
 
   handlePriceFilter = (e) => {
     const priceFilter = parseInt(e.target.value);
@@ -84,8 +99,9 @@ class TourListV3 extends Component {
   };
 
   render() {
-    const { query, locationFilter, priceFilter, filteredData, travelType } = this.state;
-    console.log(this.state.travelType);
+    const { query, locationFilter, priceFilter, filteredData, travelType } =
+      this.state;
+
     return (
       <div className="tour-list-area pd-top-120 viaje-go-top">
         <div className="container">
@@ -108,9 +124,6 @@ class TourListV3 extends Component {
                           placeholder="Search"
                         />
                       </div>
-                      <button className="submit-btn" type="submit">
-                        <i className="ti-search" />
-                      </button>
                     </form>
                   </div>
                   <div className="widget-tour-list-meta">
@@ -118,49 +131,39 @@ class TourListV3 extends Component {
                       <i className="fa fa-plus-circle" /> Location
                     </div>
                     <div className="filter">
-  <select
-                      className="selector w-100"
-    value={locationFilter}
-    onChange={this.handleLocationFilter}
-  >
-    <option value={""}>All Tours</option>
-    <option value={"Old Delhi"}>Old Delhi</option>
-    <option value={"New Delhi"}>New Delhi</option>
-    <option value={"Agra"}>Agra</option>
-    <option value={"Rajasthan"}>Rajasthan</option>
-  </select>
-</div>
-
-<div className="filter">
-  <i className="fa fa-plus-circle" /> Travel Type
-</div>
-<div className="filter">
-  <select
-                        className="selector w-100"
-                        value={travelType}
-                        onChange={this.handleTravelTypeFilter}
-                    >
-    <option value="">All Tours</option>
-    <option value="Day Cycle Tour">Day Cycle Tour</option>
-    <option value="Walking Tour">Walking Tour</option>
-    <option value="Cycling Holidays">Cycling Holidays</option>
-  </select>
-</div>
-
-<div className="filter">
-  <i className="fa fa-usd" /> Price Filter
-</div>
-<div className="filter">
                       <select
                         className="selector w-100"
-    value={priceFilter}
-    onChange={this.handlePriceFilter}
-  >
-    <option value={0}>Low - High</option>
-    <option value={1}>High - Low</option>
-  </select>
-</div>
+                        value={locationFilter}
+                        onChange={this.handleLocationFilter}
+                      >
+                        <option value={""}>All Tours</option>
+                        <option value={"Old Delhi"}>Old Delhi</option>
+                        <option value={"New Delhi"}>New Delhi</option>
+                        <option value={"Agra"}>Agra</option>
+                        <option value={"Rajasthan"}>Rajasthan</option>
+                      </select>
+                    </div>
 
+                    <div className="filter">
+                      <i className="fa fa-plus-circle" /> Travel Type
+                    </div>
+                    <div className="filter">
+                      {this.renderTravelTypeFilter()}
+                    </div>
+
+                    <div className="filter">
+                      <i className="fa fa-usd" /> Price Filter
+                    </div>
+                    <div className="filter">
+                      <select
+                        className="selector w-100"
+                        value={priceFilter}
+                        onChange={this.handlePriceFilter}
+                      >
+                        <option value={0}>Low - High</option>
+                        <option value={1}>High - Low</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>

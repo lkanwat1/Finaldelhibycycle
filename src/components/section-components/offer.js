@@ -93,13 +93,12 @@ class Offer extends Component {
                 <div className="container">
                   <div className="destinations-slider-controls">
                     <div className="slider-nav tp-control-nav" />
-                    {/*slider-nav*/}
                     <div className="tp-slider-extra slider-extra">
                       <div className="text">
                         <span className="first">01 </span>
                         <span className="last" />
                       </div>
-                      {/*text*/}
+                     
                       <div
                         className="d-list-progress"
                         role="progressbar"
@@ -109,7 +108,7 @@ class Offer extends Component {
                         <span className="slider__label sr-only" />
                       </div>
                     </div>
-                    {/*slider-extra*/}
+                    
                   </div>
                 </div>
               </div>

@@ -3561,7 +3561,7 @@ background-image: url("https://delhibycycle.s3.ap-south-1.amazonaws.com/street-f
 .banner-social-meta {
   position: absolute;
   right: -40px;
-  bottom: 250px;
+  bottom: 215px;
   -ms-transform: rotate(90deg);
   /* IE 9 */
   -webkit-transform: rotate(90deg);
@@ -7202,6 +7202,8 @@ tour details style
   background: var(--main-color-two);
   border-radius: 4px;
 }
+
+
 .search-form button i {
   color: var(--main-color-one);
   z-index: 9;

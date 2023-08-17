@@ -1,20 +1,20 @@
-import React, { Component, useEffect } from "react"
-import Navbar from "./global-components/navbar"
-import Banner from "./section-components/banner"
-import Ads from "./section-components/ads"
-import HomeData from "./section-components/homeData"
-import Offer from "./section-components/offer"
-import HolidayPlan from "./section-components/holiday-plan"
-import HolidayCity from "./section-components/tour-city"
+import React, { Component, useEffect } from "react";
+import Navbar from "./global-components/navbar";
+import Banner from "./section-components/banner";
+import Ads from "./section-components/ads";
+import HomeData from "./section-components/homeData";
+import Offer from "./section-components/offer";
+import HolidayPlan from "./section-components/holiday-plan";
+import HolidayCity from "./section-components/tour-city";
 
-import Subscribe from "./section-components/subscribe"
-import Footer from "./global-components/footer"
-import Client from "./section-components/client"
-import BlogSection from "./blog-components/blog-section-v2"
+import Subscribe from "./section-components/subscribe";
+import Footer from "./global-components/footer";
+import Client from "./section-components/client";
+import BlogSection from "./blog-components/blog-section-v2";
 
-import { homePage } from "../actions"
+import { homePage } from "../actions";
 
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 const bannerData = [
   {
@@ -83,23 +83,23 @@ const bannerData = [
       "https://dbcpictures.s3.ap-south-1.amazonaws.com/landing+page/shahjahan_tour_landing_page_banner_delhi_by_cycle.webp",
     video: "https://www.youtube.com/watch?v=7uOZSi1iUio",
   },
-]
+];
 
 class Home_V1 extends Component {
   componentDidMount() {
-    this.props.homePage()
+    this.props.homePage();
   }
 
   renderBanner() {
     if (this.props.homepagedata === null) {
-      return <Banner data={bannerData} />
+      return <Banner data={bannerData} />;
     } else {
-      return <Banner data={this.props.homepagedata.banner} />
+      return <Banner data={this.props.homepagedata.banner} />;
     }
   }
 
   render() {
-    console.log(this.props.history.location.pathname)
+    console.log(this.props.history.location.pathname);
     return (
       <div>
         <Navbar location={this.props.history.location.pathname} />
@@ -131,14 +131,14 @@ class Home_V1 extends Component {
         <Subscribe />
         <Footer />
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
     homepagedata: state.pageData.homepagedata,
-  }
+  };
 }
 
-export default connect(mapStateToProps, { homePage })(Home_V1)
+export default connect(mapStateToProps, { homePage })(Home_V1);

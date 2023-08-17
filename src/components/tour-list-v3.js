@@ -8,7 +8,6 @@ import Footer from "./global-components/footer";
 import { connect } from "react-redux";
 import { tourListPage } from "../actions";
 
-
 class TourListPageV3 extends Component {
   componentWillMount() {
     this.props.tourListPage();
@@ -18,6 +17,7 @@ class TourListPageV3 extends Component {
     return (
       <div>
         <Navbar />
+
         {this.props.tourlistpagedata && (
           <div>
             <PageHeader
@@ -29,7 +29,7 @@ class TourListPageV3 extends Component {
             <TourLIst data={this.props.tourlistpagedata.tourlist} />
           </div>
         )}
-      
+
         <Subscribe />
         <Footer />
       </div>
