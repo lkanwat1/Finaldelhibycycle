@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react"
-import Backdrop from "@mui/material/Backdrop"
-import Box from "@mui/material/Box"
-import Modal from "@mui/material/Modal"
-import Fade from "@mui/material/Fade"
-import axios from "axios"
-import { SHA256 } from "crypto-js"
-import Snackbar from "@mui/material/Snackbar"
-import MuiAlert from "@mui/material/Alert"
-import { useHistory } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import axios from "axios";
+import { SHA256 } from "crypto-js";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { useHistory } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -19,7 +19,7 @@ const style = {
   borderRadius: "2%",
   boxShadow: 30,
   p: 4,
-}
+};
 
 const style1 = {
   position: "absolute",
@@ -31,15 +31,15 @@ const style1 = {
   borderRadius: "2%",
   boxShadow: 30,
   p: 0,
-}
+};
 
 const Auth = () => {
-  const history = useHistory()
-  const [status, setStatus] = useState(false)
+  const history = useHistory();
+  const [status, setStatus] = useState(false);
   const [user1, setUser1] = useState({
     email: "",
     password: "",
-  })
+  });
   const [selectedCountry, setSelectedCountry] = useState("");
   const [user, setUser] = useState({
     name: "",
@@ -47,55 +47,57 @@ const Auth = () => {
     password: "",
     country: "",
     mobileNumber: "",
-    dialCode: ""
-  })
-  
-  const countries = [
-    { code: 'US', name: 'United States', dialCode: '+1' },
-    { code: 'CA', name: 'Canada', dialCode: '+1' },
-    { code: 'GB', name: 'United Kingdom', dialCode: '+44' },
-    { code: 'IN', name: 'India', dialCode: '+91' },
-    // Add more countries as needed
-    { code: 'AU', name: 'Australia', dialCode: '+61' },
-    { code: 'DE', name: 'Germany', dialCode: '+49' },
-    { code: 'FR', name: 'France', dialCode: '+33' },
-    { code: 'JP', name: 'Japan', dialCode: '+81' },
-    { code: 'CN', name: 'China', dialCode: '+86' },
-    { code: 'BR', name: 'Brazil', dialCode: '+55' },
-    { code: 'MX', name: 'Mexico', dialCode: '+52' },
-    { code: 'RU', name: 'Russia', dialCode: '+7' },
-    { code: 'SA', name: 'Saudi Arabia', dialCode: '+966' },
-    // Add more countries as needed
-];
+    dialCode: "",
+  });
 
-  const [loginErrors, setLoginErrors] = useState({})
-  const [registerErrors, setRegisterErrors] = useState({})
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [open, setOpen] = React.useState(false)
-  const [registerOpen, setRegisterOpen] = React.useState(false)
-  const [showSuccessNotification, setShowSuccessNotification] = useState(false)
+  const countries = [
+    { code: "US", name: "United States", dialCode: "+1" },
+    { code: "CA", name: "Canada", dialCode: "+1" },
+    { code: "GB", name: "United Kingdom", dialCode: "+44" },
+    { code: "IN", name: "India", dialCode: "+91" },
+    // Add more countries as needed
+    { code: "AU", name: "Australia", dialCode: "+61" },
+    { code: "DE", name: "Germany", dialCode: "+49" },
+    { code: "FR", name: "France", dialCode: "+33" },
+    { code: "JP", name: "Japan", dialCode: "+81" },
+    { code: "CN", name: "China", dialCode: "+86" },
+    { code: "BR", name: "Brazil", dialCode: "+55" },
+    { code: "MX", name: "Mexico", dialCode: "+52" },
+    { code: "RU", name: "Russia", dialCode: "+7" },
+    { code: "SA", name: "Saudi Arabia", dialCode: "+966" },
+    // Add more countries as needed
+  ];
+
+  const [loginErrors, setLoginErrors] = useState({});
+  const [registerErrors, setRegisterErrors] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [registerOpen, setRegisterOpen] = React.useState(false);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
   const [showSuccessNotification1, setShowSuccessNotification1] =
-    useState(false)
+    useState(false);
   const [showSuccessNotification2, setShowSuccessNotification2] =
-    useState(false)
+    useState(false);
   const [showSuccessNotification3, setShowSuccessNotification3] =
-    useState(false)
+    useState(false);
   // const [Istoken]
   const handleChange1 = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setUser1({
       ...user1,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "country") {
-      const newSelectedCountry = countries.find((country) => country.name === value);
+      const newSelectedCountry = countries.find(
+        (country) => country.name === value
+      );
       setSelectedCountry(newSelectedCountry);
-      
+
       setUser((prevUser) => ({
         ...prevUser,
         [name]: value,
@@ -109,165 +111,171 @@ const Auth = () => {
     }
   };
 
-
   const handleOpen = () => {
-    setOpen(true)
-    setRegisterOpen(false) // Close the register modal
-  }
+    setOpen(true);
+    setRegisterOpen(false); // Close the register modal
+  };
 
-  const handleClose = () => setOpen(false)
-  const handleClose1 = () => setRegisterOpen(false)
+  const handleClose = () => setOpen(false);
+  const handleClose1 = () => setRegisterOpen(false);
 
   const handleRegisterOpen = () => {
-    setOpen(false) // Close the login modal
-    setRegisterOpen(true)
-  }
+    setOpen(false); // Close the login modal
+    setRegisterOpen(true);
+  };
 
-  const handleRegisterClose = () => setRegisterOpen(false)
+  const handleRegisterClose = () => setRegisterOpen(false);
 
   useEffect(() => {
     // Check login status on component mount
-    const storedToken = localStorage.getItem("token")
+    const storedToken = localStorage.getItem("token");
     // console.log(storedToken)
     if (storedToken) {
       // console.log(token)
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
     } else {
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
-  }, [])
+  }, []);
 
   const handleSuccessNotificationClose = () => {
-    setShowSuccessNotification(false)
-  }
+    setShowSuccessNotification(false);
+  };
   const handleSuccessNotificationClose1 = () => {
-    setShowSuccessNotification1(false)
-  }
+    setShowSuccessNotification1(false);
+  };
   const handleSuccessNotificationClose2 = () => {
-    setShowSuccessNotification2(false)
-  }
+    setShowSuccessNotification2(false);
+  };
   const handleSuccessNotificationClose3 = () => {
-    setShowSuccessNotification3(false)
-  }
+    setShowSuccessNotification3(false);
+  };
 
   const register = (e) => {
-    e.preventDefault()
-    const { name, email, password, country, dialCode, mobileNumber, confirmPassword } =
-      user
-    const errors = {}
+    e.preventDefault();
+    const {
+      name,
+      email,
+      password,
+      country,
+      dialCode,
+      mobileNumber,
+      confirmPassword,
+    } = user;
+    const errors = {};
 
     if (!name) {
-      errors.name = "Name is required"
+      errors.name = "Name is required";
     }
     if (!email) {
-      errors.email = "Email is required"
+      errors.email = "Email is required";
     } else {
       // Validate email format
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        errors.email = "Please enter a valid email"
+        errors.email = "Please enter a valid email";
       }
     }
     if (!password) {
-      errors.password = "Password is required"
+      errors.password = "Password is required";
     } else if (password.length < 8) {
-      errors.password = "Password must be at least 8 characters"
+      errors.password = "Password must be at least 8 characters";
     }
     if (!confirmPassword) {
-      errors.confirmPassword = "Confirm Password is required"
+      errors.confirmPassword = "Confirm Password is required";
     } else if (password !== confirmPassword) {
-      errors.confirmPassword = "Passwords do not match"
+      errors.confirmPassword = "Passwords do not match";
     }
     if (!country) {
-      errors.country = "Country is required"
+      errors.country = "Country is required";
     }
     if (!mobileNumber) {
-      errors.mobileNumber = "Mobile Number is required"
+      errors.mobileNumber = "Mobile Number is required";
     }
 
     if (Object.keys(errors).length === 0) {
       axios
         .post("https://www.delhibycycle.com/auth/signup", user)
         .then((res) => {
-          const message = res.data.message
+          const message = res.data.message;
           // alert('Successfully Registered!'); // Display error or success notification
           if (message !== "Something Wrong WIth Email or Password") {
-            setShowSuccessNotification1(true)
-            setIsLoggedIn(true)
-            localStorage.setItem("token", res.data.token)
-            handleClose1()
+            setShowSuccessNotification1(true);
+            setIsLoggedIn(true);
+            localStorage.setItem("token", res.data.token);
+            handleClose1();
             setTimeout(() => {
-              history.push("/user-profile")
-            }, 300)
+              history.push("/user-profile");
+            }, 300);
           }
           // Close the page
         })
         .catch((err) => {
-          console.error(err)
-          handleClose1()
-          setShowSuccessNotification3(true)
+          console.error(err);
+          handleClose1();
+          setShowSuccessNotification3(true);
           // alert('Failed to register');
-        })
+        });
     } else {
-      setRegisterErrors(errors)
+      setRegisterErrors(errors);
     }
-  }
+  };
 
   const login = () => {
-    const { email, password } = user1
-    const errors = {}
+    const { email, password } = user1;
+    const errors = {};
 
     if (!email) {
-      errors.email = "Email is required"
+      errors.email = "Email is required";
     } else {
       // Validate email format
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        errors.email = "Please enter a valid email"
+        errors.email = "Please enter a valid email";
       }
     }
     if (!password) {
-      errors.password = "Password is required"
+      errors.password = "Password is required";
     } else if (password.length < 8) {
-      errors.password = "Password must be at least 8 characters"
+      errors.password = "Password must be at least 8 characters";
     }
 
     if (Object.keys(errors).length === 0) {
       axios
         .post("https://www.delhibycycle.com/auth/signin", user1)
         .then((res) => {
-          const message = "Successfully Logged in"
+          const message = "Successfully Logged in";
           // this.props.history.push("/user-profile")
 
           // alert(message); // Display success or error notification
           if (message === "Successfully Logged in") {
-            setShowSuccessNotification(true)
-            localStorage.setItem("token", res.data.token)
-            setIsLoggedIn(true)
+            setShowSuccessNotification(true);
+            localStorage.setItem("token", res.data.token);
+            setIsLoggedIn(true);
             setTimeout(() => {
-              history.push("/user-profile")
-            }, 300)
-            handleClose() // Set login status to true and close the login modal
+              history.push("/user-profile");
+            }, 300);
+            handleClose(); // Set login status to true and close the login modal
           }
         })
         .catch((err) => {
-          console.error(err)
-          setShowSuccessNotification2(true)
-          handleClose()
+          console.error(err);
+          setShowSuccessNotification2(true);
+          handleClose();
           // alert('Failed to login');
-        })
+        });
     } else {
-      setLoginErrors(errors)
+      setLoginErrors(errors);
     }
-  }
+  };
 
   const logout = () => {
-    setIsLoggedIn(false) // Set login status to false
-    localStorage.removeItem("token")
+    setIsLoggedIn(false); // Set login status to false
+    localStorage.removeItem("token");
     setTimeout(() => {
-      history.push("/")
-    }, 300)
-  }
+      history.push("/");
+    }, 300);
+  };
 
   return (
     <div>
@@ -278,7 +286,7 @@ const Auth = () => {
       >
         <MuiAlert
           onClose={handleSuccessNotificationClose}
-          severity='success'
+          severity="success"
           sx={{ width: "15%", position: "fixed", top: "10vh", left: "41vw" }}
         >
           Successfully Logged in
@@ -291,7 +299,7 @@ const Auth = () => {
       >
         <MuiAlert
           onClose={handleSuccessNotificationClose1}
-          severity='success'
+          severity="success"
           sx={{ width: "15%", position: "fixed", top: "10vh", left: "41vw" }}
         >
           Successfully Registered in
@@ -304,7 +312,7 @@ const Auth = () => {
       >
         <MuiAlert
           onClose={handleSuccessNotificationClose2}
-          severity='error'
+          severity="error"
           sx={{ width: "18%", position: "fixed", top: "10vh", left: "41vw" }}
         >
           Something wrong Please try again..
@@ -317,21 +325,19 @@ const Auth = () => {
       >
         <MuiAlert
           onClose={handleSuccessNotificationClose3}
-          severity='error'
+          severity="error"
           sx={{ width: "18%", position: "fixed", top: "10vh", left: "41vw" }}
         >
           Something wrong Please try again..
         </MuiAlert>
       </Snackbar>
-        
-      
+
       {isLoggedIn ? (
         // Display logout button if logged in
         <button
-        className='atn btn-yellow reslogin'
-        onClick={logout}
-        style={{
-          
+          className="atn btn-yellow reslogin"
+          onClick={logout}
+          style={{
             backgroundColor: "whitesmoke",
             color: "black",
             cursor: "pointer",
@@ -342,18 +348,17 @@ const Auth = () => {
       ) : (
         // Display login button if not logged in
         <button
-        
-        className='atn btn-yellow reslogin'
-        onClick={handleOpen}
-        style={{ cursor: "pointer" }}
+          className="atn btn-yellow reslogin"
+          onClick={handleOpen}
+          style={{ cursor: "pointer" }}
         >
           Login
         </button>
       )}
-     
+
       <Modal
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -402,12 +407,12 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  id='loginemail'
-                  autoComplete='off'
-                  name='email'
+                  id="loginemail"
+                  autoComplete="off"
+                  name="email"
                   defaultValue={user1.email}
                   onChange={handleChange1}
-                  placeholder='Enter your email'
+                  placeholder="Enter your email"
                   required
                 />
 
@@ -432,13 +437,13 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  id='password'
-                  autoComplete='off'
-                  type='password'
-                  name='password'
+                  id="password"
+                  autoComplete="off"
+                  type="password"
+                  name="password"
                   defaultValue={user1.password}
                   onChange={handleChange1}
-                  placeholder='Password'
+                  placeholder="Password"
                   required
                 />
                 {loginErrors.password && (
@@ -454,7 +459,7 @@ const Auth = () => {
                 )}
               </div>
               <button
-                className='btn btn-yellow'
+                className="btn btn-yellow"
                 style={{
                   marginTop: "0vh",
                   textAlign: "center",
@@ -479,8 +484,8 @@ const Auth = () => {
         </Fade>
       </Modal>
       <Modal
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
         open={registerOpen}
         onClose={handleRegisterClose}
         closeAfterTransition
@@ -494,7 +499,7 @@ const Auth = () => {
         <Fade in={registerOpen}>
           <Box sx={style1}>
             <div
-              className='tp-form-wrap'
+              className="tp-form-wrap"
               style={{
                 justifyContent: "center",
                 display: "flex",
@@ -529,9 +534,9 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  type='text'
-                  name='name'
-                  placeholder='Name'
+                  type="text"
+                  name="name"
+                  placeholder="Name"
                   defaultValue={user.name}
                   onChange={handleChange}
                 />
@@ -556,9 +561,9 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  name='password'
-                  type='password'
-                  placeholder='Password'
+                  name="password"
+                  type="password"
+                  placeholder="Password"
                   defaultValue={user.password}
                   onChange={handleChange}
                   required
@@ -584,9 +589,9 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  name='confirmPassword'
-                  type='password'
-                  placeholder='Confirm Password'
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
                   defaultValue={user.confirmPassword}
                   onChange={handleChange}
                   required
@@ -612,9 +617,9 @@ const Auth = () => {
                     backgroundColor: "whitesmoke",
                     border: "none",
                   }}
-                  name='email'
-                  type='text'
-                  placeholder='Email'
+                  name="email"
+                  type="text"
+                  placeholder="Email"
                   defaultValue={user.email}
                   onChange={handleChange}
                   required
@@ -630,100 +635,98 @@ const Auth = () => {
                     {registerErrors.email}
                   </p>
                 )}
-           <select
-        style={{
-          display: "block",
-    marginTop: "1vh",
-    marginBottom: "2.9vh",
-    padding: "15px",
-    width: "300px",
-    backgroundColor: "whitesmoke",
-    border: "none",
-    maxHeight: "200px",   // Add max-height property for scrollability
-    overflow: "auto",     // Add overflow property for scrolling
-        }}
-        name='country'
-        defaultValue={user.country}
-        onChange={handleChange}
-        required
-      >
-        <option value=''>Select a country</option>
-        {countries.map((country) => (
-          <option key={country.code} value={country.name}>
-            {country.name}
-          </option>
-        ))}
-      </select>
-      {registerErrors.country && (
-        <p
-          style={{
-            color: "red",
-            marginTop: "-30px",
-            marginBottom: "20px",
-          }}
-        >
-          {registerErrors.country}
-        </p>
-      )}
+                <select
+                  style={{
+                    display: "block",
+                    marginTop: "1vh",
+                    marginBottom: "2.9vh",
+                    padding: "15px",
+                    width: "300px",
+                    backgroundColor: "whitesmoke",
+                    border: "none",
+                    maxHeight: "200px", // Add max-height property for scrollability
+                    overflow: "auto", // Add overflow property for scrolling
+                  }}
+                  name="country"
+                  defaultValue={user.country}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select a country</option>
+                  {countries.map((country) => (
+                    <option key={country.code} value={country.name}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+                {registerErrors.country && (
+                  <p
+                    style={{
+                      color: "red",
+                      marginTop: "-30px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {registerErrors.country}
+                  </p>
+                )}
 
-
-    
-<div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
                   <input
                     style={{
                       marginTop: "1vh",
                       marginBottom: "2.9vh",
                       padding: "15px",
-                      
+
                       paddingRight: "1px",
                       backgroundColor: "whitesmoke",
                       color: "black",
                       border: "none",
                       width: "55px",
-                      
-                      borderTopLeftRadius: '4px',
-                      borderBottomLeftRadius: '4px',
+
+                      borderTopLeftRadius: "4px",
+                      borderBottomLeftRadius: "4px",
                     }}
-                    name='dialCode'
+                    name="dialCode"
                     value={selectedCountry.dialCode || "+123"}
                     readOnly
-    />
-        <input
-            style={{
-                display: "block",
-                marginTop: "1vh",
-                marginBottom: "2.9vh",
+                  />
+                  <input
+                    style={{
+                      display: "block",
+                      marginTop: "1vh",
+                      marginBottom: "2.9vh",
                       padding: "15px",
-                      paddingRight:"22px",
+                      paddingRight: "22px",
                       paddingLeft: "0",
-                marginRight:"11px",
-                width: "100%",
-                backgroundColor: "whitesmoke",
-                border: "none",
-                // marginLeft: '-1vw', // Adjust this value to create space between dial code and input
-            }}
-            name='mobileNumber'
-            type='text'
-            placeholder='Mobile Number'
-            value={user.mobileNumber}
-            onChange={handleChange}
-            required
-        />
-    </div>
-      {registerErrors.mobileNumber && (
-        <p
-          style={{
-            color: "red",
-            marginTop: "-30px",
-            marginBottom: "20px",
-          }}
-        >
-          {registerErrors.mobileNumber}
-        </p>
-      )}
+                      marginRight: "11px",
+                      width: "100%",
+                      backgroundColor: "whitesmoke",
+                      border: "none",
+                      // marginLeft: '-1vw', // Adjust this value to create space between dial code and input
+                    }}
+                    name="mobileNumber"
+                    type="text"
+                    placeholder="Mobile Number"
+                    value={user.mobileNumber}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                {registerErrors.mobileNumber && (
+                  <p
+                    style={{
+                      color: "red",
+                      marginTop: "-30px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {registerErrors.mobileNumber}
+                  </p>
+                )}
               </div>
               <button
-                className='btn btn-yellow'
+                className="btn btn-yellow"
                 style={{
                   marginTop: "-2vh",
                   textAlign: "center",
@@ -747,7 +750,7 @@ const Auth = () => {
         </Fade>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;

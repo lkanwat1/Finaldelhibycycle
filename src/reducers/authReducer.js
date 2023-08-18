@@ -4,6 +4,8 @@ import {
   CONTACT_US,
   HOMESCREEN_PROMPT,
   TOGGLE_NOTIFICATION,
+  USER_DETAILS,
+  LOGOUT,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -51,6 +53,22 @@ export default (state = INITIAL_STATE, actions) => {
         contactemail: "",
         contactmessage: "",
       };
+    case USER_DETAILS:
+      console.log("Reached here");
+      return {
+        ...state,
+        contactemail: actions.payload.email,
+        contactname: actions.payload.name,
+        contactnumber: actions.payload.mobileNumber,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        contactemail: "",
+        contactname: "",
+        contactnumber: "",
+      };
+
     default:
       return state;
   }

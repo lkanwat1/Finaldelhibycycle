@@ -9,6 +9,7 @@ import {
   onAuthFieldChanged,
   toggleNotification,
   countIncrease,
+  fetchUserDetails,
 } from "../../actions";
 import axios from "axios";
 import Foo from "./star-rating";
@@ -21,6 +22,7 @@ class TourDetails extends Component {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     document.body.appendChild(script);
+    this.props.fetchUserDetails();
   }
   renderHostDescription(host) {
     return host.description.map((singleContent) => {
@@ -298,7 +300,10 @@ class TourDetails extends Component {
       date,
       feature,
       tagline,
+      _id,
     } = this.props.data;
+    console.log(this.props.data);
+
     const rate = parseFloat(rating);
     return (
       <div className="tour-details-area">
@@ -805,4 +810,5 @@ export default connect(mapStateToProps, {
   onAuthFieldChanged,
   toggleNotification,
   countIncrease,
+  fetchUserDetails,
 })(TourDetails);

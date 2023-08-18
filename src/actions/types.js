@@ -16,3 +16,5 @@ export const PAYMENT = "payment";
 export const TOUR_DETAIL_CLEAR = "tour_detail_clear";
 
 export const COUNT_INCREASE = "count_increase";
+export const USER_DETAILS = "user_details";
+export const LOGOUT = "logout";

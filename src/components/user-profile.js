@@ -8,8 +8,14 @@ import Footer from "./global-components/footer";
 const UserProfilePage = () => {
   return (
     <div>
-      <Navbar />
-      <PageHeader headertitle="User Profile" />
+      <div
+        style={{
+          backgroundImage: `url("https://delhibycycle.s3.ap-south-1.amazonaws.com/delhi-agra-cycle-tour-header-landing-page-delhi-by-cycle.jpg")`,
+        }}
+      >
+        <Navbar />
+        <PageHeader headertitle="User Profile" />
+      </div>
       <UserProfile />
       <Subscribe />
       <Footer />

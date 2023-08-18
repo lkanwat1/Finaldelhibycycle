@@ -13,6 +13,9 @@ class UserProfile extends Component {
       bio: "",
       country: "",
       mobileNumber: "",
+      oldPassword: "",
+      newPassword: "",
+      retypedPassword: "",
       isEditMode: false, // Track whether the fields are in edit mode or not
       snackbarOpen: false, // Track whether the snackbar is open or not
       snackbarMessage: "", // Message to be displayed in the snackbar
@@ -32,8 +35,8 @@ class UserProfile extends Component {
       .then((res) => {
         // Extract the name from the response and update the state
         console.log(res.data);
-        const { name, email, country, mobileNumber } = res.data;
-        this.setState({ name, email, country, mobileNumber });
+        const { name, email, country, mobileNumber, bio } = res.data;
+        this.setState({ name, email, country, mobileNumber, bio });
         console.log(this.state.name);
       })
       .catch((error) => {
@@ -51,8 +54,8 @@ class UserProfile extends Component {
     // Example axios request:
     const { name, bio, country, email, mobileNumber } = this.state;
     axios
-      .put(
-        "https://www.delhibycycle.com/updateUser",
+      .post(
+        "http://localhost:3000/updateuser",
         {
           name,
           bio,
@@ -71,6 +74,39 @@ class UserProfile extends Component {
           isEditMode: false,
           snackbarOpen: true,
           snackbarMessage: "Data saved successfully.",
+          snackbarSeverity: "success",
+        });
+      })
+      .catch((error) => {
+        console.error("Error saving data:", error);
+        this.setState({
+          snackbarOpen: true,
+          snackbarMessage: "Error saving data: " + error,
+          snackbarSeverity: "error",
+        });
+      });
+  };
+
+  handlePasswordChange = () => {
+    const { oldPassword, newPassword, retypedPassword } = this.state;
+    axios
+      .post(
+        "http://localhost:3000/updateuserpassword",
+        {
+          oldPassword,
+          newPassword,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((data) => {
+        this.setState({
+          isEditMode: false,
+          snackbarOpen: true,
+          snackbarMessage: data.data,
           snackbarSeverity: "success",
         });
       })
@@ -171,6 +207,9 @@ class UserProfile extends Component {
       country,
       email,
       mobileNumber,
+      oldPassword,
+      newPassword,
+      retypedPassword,
       isEditMode,
       snackbarOpen,
       snackbarMessage,
@@ -211,16 +250,7 @@ class UserProfile extends Component {
                           Profile
                         </a>
                       </li>
-                      <li className="nav-item">
-                        <a
-                          className="nav-link"
-                          data-toggle="tab"
-                          href="#tabs_2"
-                        >
-                          <i className="fa fa-check-square-o" />
-                          Verifications
-                        </a>
-                      </li>
+
                       <li className="nav-item">
                         <a
                           className="nav-link"
@@ -228,7 +258,7 @@ class UserProfile extends Component {
                           href="#tabs_3"
                         >
                           <i className="fa fa-cog" />
-                          Settings
+                          Change Password
                         </a>
                       </li>
                       <li className="nav-item">
@@ -238,19 +268,10 @@ class UserProfile extends Component {
                           href="#tabs_4"
                         >
                           <i className="fa fa-recycle" />
-                          Recently Viewed
+                          Past Orders
                         </a>
                       </li>
-                      <li className="nav-item">
-                        <a
-                          className="nav-link"
-                          data-toggle="tab"
-                          href="#tabs_5"
-                        >
-                          <i className="fa fa-credit-card-alt" />
-                          Payment Methods
-                        </a>
-                      </li>
+
                       <li className="nav-item">
                         <a
                           className="nav-link"
@@ -273,7 +294,7 @@ class UserProfile extends Component {
                     <div className="tab-content user-tab-content">
                       <div className="tab-pane fade show active" id="tabs_1">
                         <div className="user-details">
-                          <h3 className="user-details-title">Profile</h3>
+                          {/* <h3 className="user-details-title">Profile</h3>
                           <div className="tp-img-upload">
                             <div className="tp-avatar-preview">
                               <div
@@ -303,7 +324,7 @@ class UserProfile extends Component {
                               </label>
                               <h4 className="name">{name}</h4>
                             </div>
-                          </div>
+                          </div> */}
                           <form
                             className="tp-form-wrap"
                             onSubmit={(e) => e.preventDefault()}
@@ -323,6 +344,7 @@ class UserProfile extends Component {
                                     />
                                   ) : (
                                     <input
+                                      disabled
                                       type="text"
                                       name="name"
                                       value={name}
@@ -352,6 +374,7 @@ class UserProfile extends Component {
                                     />
                                   ) : (
                                     <textarea
+                                      disabled
                                       type="text"
                                       name="bio"
                                       value={bio}
@@ -373,6 +396,7 @@ class UserProfile extends Component {
                                     />
                                   ) : (
                                     <input
+                                      disabled
                                       type="text"
                                       name="country"
                                       value={country}
@@ -394,6 +418,7 @@ class UserProfile extends Component {
                                     />
                                   ) : (
                                     <input
+                                      disabled
                                       type="text"
                                       name="email"
                                       value={email}
@@ -404,7 +429,7 @@ class UserProfile extends Component {
                               <div className="col-md-6">
                                 <label className="single-input-wrap style-two">
                                   <span className="single-input-title">
-                                    Other Phone
+                                    Mobile Number
                                   </span>
                                   {isEditMode ? (
                                     <input
@@ -416,6 +441,7 @@ class UserProfile extends Component {
                                     />
                                   ) : (
                                     <input
+                                      disabled
                                       type="text"
                                       name="phone"
                                       value={mobileNumber}
@@ -442,12 +468,6 @@ class UserProfile extends Component {
                                     Edit
                                   </button>
                                 )}
-                              </div>
-                              <div className="col-6">
-                                <input
-                                  className="btn btn-yellow mt-3 text-center"
-                                  type="submit"
-                                />
                               </div>
                             </div>
                           </form>
@@ -478,27 +498,52 @@ class UserProfile extends Component {
                                 <span className="single-input-title mb-3">
                                   Change your password
                                 </span>
-                                <input type="text" placeholder="Old password" />
+                                <input
+                                  type="text"
+                                  name="oldPassword"
+                                  value={oldPassword}
+                                  onChange={this.handleChange}
+                                  placeholder="Old password"
+                                />
                               </label>
                             </div>
                             <div className="col-lg-7">
                               <label className="single-input-wrap style-two">
-                                <input type="text" placeholder="New password" />
+                                <input
+                                  type="text"
+                                  name="newPassword"
+                                  value={newPassword}
+                                  onChange={this.handleChange}
+                                  placeholder="New password"
+                                />
                               </label>
                             </div>
                             <div className="col-lg-7">
                               <label className="single-input-wrap style-two">
-                                <input type="text" placeholder="New password" />
+                                <input
+                                  type="text"
+                                  name="retypedPassword"
+                                  value={retypedPassword}
+                                  onChange={this.handleChange}
+                                  placeholder="New password"
+                                />
                               </label>
+                            </div>
+                            <div className="col-lg-7">
+                              <button
+                                className="btn btn-yellow  text-center"
+                                type="button"
+                                onClick={this.handlePasswordChange}
+                              >
+                                Change Password
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div className="tab-pane fade" id="tabs_4">
                         <div className="user-recent-view">
-                          <h3 className="user-details-title">
-                            Recently Viewed
-                          </h3>
+                          <h3 className="user-details-title">Past Orders</h3>
                           <div className="row">
                             <div className="col-sm-6">
                               <div className="single-destinations-list style-two">

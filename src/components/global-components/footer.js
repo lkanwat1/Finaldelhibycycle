@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import ImageLazyLoad from "../section-components/ImageLazyLoad"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import ImageLazyLoad from "../section-components/ImageLazyLoad";
 
 const instagram = [
   {
@@ -45,27 +45,27 @@ const instagram = [
       "https://delhibycycle.s3.ap-south-1.amazonaws.com/delhi-by-cycle-president-house.webp",
     url: "https://www.instagram.com/p/CAJ8SqjJoHY/",
   },
-]
+];
 class Footer_v1 extends Component {
   componentDidMount() {
-    let publicUrl = process.env.PUBLIC_URL + "/"
-    const minscript = document.createElement("script")
-    minscript.async = true
-    minscript.src = publicUrl + "assets/js/main.js"
+    let publicUrl = process.env.PUBLIC_URL + "/";
+    const minscript = document.createElement("script");
+    minscript.async = true;
+    minscript.src = publicUrl + "assets/js/main.js";
 
-    document.body.appendChild(minscript)
+    document.body.appendChild(minscript);
   }
   renderContent() {
     return instagram.map((singleData) => {
-      const { imageweb, imagejpeg, url } = singleData
-      let publicUrl = process.env.PUBLIC_URL + "/"
+      const { imageweb, imagejpeg, url } = singleData;
+      let publicUrl = process.env.PUBLIC_URL + "/";
       return (
         <li>
-          <a href={url} target='_blank'>
+          <a href={url} target="_blank">
             <ImageLazyLoad
               imagejpeg={imagejpeg}
               imagewebp={imageweb}
-              alt='Delhi by Cycle Instagram images'
+              alt="Delhi by Cycle Instagram images"
             />
             {/* <picture>
               <source
@@ -76,22 +76,22 @@ class Footer_v1 extends Component {
             </picture> */}
           </a>
         </li>
-      )
-    })
+      );
+    });
   }
 
   render() {
-    let publicUrl = process.env.PUBLIC_URL + "/"
-    let imgattr = "Footer logo"
+    let publicUrl = process.env.PUBLIC_URL + "/";
+    let imgattr = "Footer logo";
 
     return (
-      <footer className='footer-area'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-4 col-md-6'>
-              <div className='footer-widget widget'>
-                <div className='about_us_widget'>
-                  <Link to='/' className='footer-logo'>
+      <footer className="footer-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4 col-md-6">
+              <div className="footer-widget widget">
+                <div className="about_us_widget">
+                  <Link to="/" className="footer-logo">
                     <picture>
                       <source
                         srcSet={
@@ -110,131 +110,131 @@ class Footer_v1 extends Component {
                     Welcome to DelhiByCycle! A lifetime experience in the
                     streets of Delhi & countryside of India is waiting for you.
                   </p>
-                  <ul className='social-icon'>
+                  <ul className="social-icon">
                     <li>
                       <a
-                        className='facebook'
-                        href='https://www.facebook.com/delhibycycle'
-                        target='_blank'
+                        className="facebook"
+                        href="https://www.facebook.com/delhibycycle"
+                        target="_blank"
                       >
-                        <i className='fa fa-facebook  ' />
+                        <i className="fa fa-facebook  " />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='twitter'
-                        href='https://twitter.com/delhibycycle'
-                        target='_blank'
+                        className="twitter"
+                        href="https://twitter.com/delhibycycle"
+                        target="_blank"
                       >
-                        <i className='fa fa-twitter  ' />
+                        <i className="fa fa-twitter  " />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='pinterest'
-                        href='https://www.instagram.com/delhibycycle/'
-                        target='_blank'
+                        className="pinterest"
+                        href="https://www.instagram.com/delhibycycle/"
+                        target="_blank"
                       >
-                        <i className='fa fa-instagram' />
+                        <i className="fa fa-instagram" />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='pinterest'
-                        href='https://in.pinterest.com/dbycycle/'
-                        target='_blank'
+                        className="pinterest"
+                        href="https://in.pinterest.com/dbycycle/"
+                        target="_blank"
                       >
-                        <i className='fa fa-pinterest' />
+                        <i className="fa fa-pinterest" />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='pinterest'
-                        href='https://www.youtube.com/channel/UCmEP7wlda-Q8mZPk47D8YxA'
-                        target='_blank'
+                        className="pinterest"
+                        href="https://www.youtube.com/channel/UCmEP7wlda-Q8mZPk47D8YxA"
+                        target="_blank"
                       >
-                        <i className='fa fa-youtube' />
+                        <i className="fa fa-youtube" />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='pinterest'
-                        href='https://www.linkedin.com/company/delhibycycle'
-                        target='_blank'
+                        className="pinterest"
+                        href="https://www.linkedin.com/company/delhibycycle"
+                        target="_blank"
                       >
-                        <i className='fa fa-linkedin' />
+                        <i className="fa fa-linkedin" />
                       </a>
                     </li>
                     <li>
                       <a
-                        className='pinterest'
-                        href='https://www.tripadvisor.in/Attraction_Review-g304551-d1788534-Reviews-DelhiByCycle-New_Delhi_National_Capital_Territory_of_Delhi.html'
-                        target='_blank'
+                        className="pinterest"
+                        href="https://www.tripadvisor.in/Attraction_Review-g304551-d1788534-Reviews-DelhiByCycle-New_Delhi_National_Capital_Territory_of_Delhi.html"
+                        target="_blank"
                       >
-                        <i className='fa fa-tripadvisor' />
+                        <i className="fa fa-tripadvisor" />
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 col-md-6'>
-              <div className='footer-widget widget '>
-                <div className='widget-contact'>
-                  <h4 className='widget-title'>Contact us</h4>
+            <div className="col-lg-3 col-md-6">
+              <div className="footer-widget widget ">
+                <div className="widget-contact">
+                  <h4 className="widget-title">Contact us</h4>
                   <p>
-                    <i className='fa fa-map-marker' />
+                    <i className="fa fa-map-marker" />
                     <span>
                       Jack's Adventures Pvt. Ltd., Asaf Ali Road, New Delhi,
                       India
                     </span>
                   </p>
-                  <p className='location'>
-                    <i className='fa fa-envelope-o' />
+                  <p className="location">
+                    <i className="fa fa-envelope-o" />
                     <span>info@delhibycycle.com</span>
                   </p>
-                  <p className='telephone'>
-                    <i className='fa fa-phone base-color' />
+                  <p className="telephone">
+                    <i className="fa fa-phone base-color" />
                     <span>+91 9811723720</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div className='col-lg-2 col-md-6'>
-              <div className='footer-widget widget'>
-                <h4 className='widget-title'>Quick Link</h4>
-                <ul className='widget_nav_menu  viaje-go-top'>
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-widget widget">
+                <h4 className="widget-title">Quick Link</h4>
+                <ul className="widget_nav_menu  viaje-go-top">
                   <li>
-                    <Link to='/'>Home</Link>
+                    <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <Link to='/about'>About Us</Link>
+                    <Link to="/about">About Us</Link>
                   </li>
                   <li>
-                    <Link to='/destination-list'>Destination</Link>
+                    <Link to="/destination-list">Destination</Link>
                   </li>
                   <li>
-                    <Link to='/tour-details'>Tours</Link>
+                    <Link to="/tour-details">Tours</Link>
                   </li>
                   <li>
-                    <Link to='/blog'>Blog</Link>
+                    <Link to="/blog">Blog</Link>
                   </li>
                   <li>
-                    <Link to='/contact'>Contact</Link>
+                    <Link to="/contact">Contact</Link>
                   </li>
                   <li>
-                    <Link to='/privacy'>Privacy Policy</Link>
+                    <Link to="/privacy">Privacy Policy</Link>
                   </li>
                   <li>
-                    <Link to='/contact'>Terms & Conditions</Link>
+                    <Link to="/contact">Terms & Conditions</Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className='col-lg-3 col-md-6'>
-              <div className='footer-widget widget'>
-                <h4 className='widget-title'>Instagram Gallery</h4>
-                <ul className='widget-instagram-feed'>
+            <div className="col-lg-3 col-md-6">
+              <div className="footer-widget widget">
+                <h4 className="widget-title">Instagram Gallery</h4>
+                <ul className="widget-instagram-feed">
                   {this.renderContent()}
                 </ul>
               </div>
@@ -242,14 +242,14 @@ class Footer_v1 extends Component {
           </div>
         </div>
 
-        <div className='copyright-inner'>
-          <div className='copyright-text'>
-            © Delh Cycle 2022 All Rights Reserved
+        <div className="copyright-inner">
+          <div className="copyright-text">
+            © Delhi By Cycle 2023 All Rights Reserved
           </div>
         </div>
       </footer>
-    )
+    );
   }
 }
 
-export default Footer_v1
+export default Footer_v1;
